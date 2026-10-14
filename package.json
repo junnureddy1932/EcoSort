@@ -1,0 +1,28 @@
+{
+  "name": "ecosort-ai-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "EcoSort AI — Scan Smart. Sort Right. Save the Planet.",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently --names \"API,WEB\" --prefix-colors \"green,blue\" \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:web": "npm run dev --workspace=@ecosort/web",
+    "dev:api": "npm run dev --workspace=@ecosort/api",
+    "build": "npm run build --workspaces --if-present",
+    "build:shared": "npm run build --workspace=@ecosort/shared",
+    "build:api": "npm run build --workspace=@ecosort/api",
+    "build:web": "npm run build --workspace=@ecosort/web",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "test:e2e": "npx playwright test --config=tests/e2e/playwright.config.ts",
+    "db:seed": "node apps/api/scripts/seed.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.5",
+    "typescript": "^5.6.3"
+  }
+}
